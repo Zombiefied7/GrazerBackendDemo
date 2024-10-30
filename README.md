@@ -1,6 +1,6 @@
 # README
 
-[Project Design Document](./DESIGN.md)
+# [🚀 Go to the Design Document](./DESIGN.md)
 
 ## Setup Instructions
 
