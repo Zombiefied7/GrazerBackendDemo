@@ -1,5 +1,7 @@
 # README
 
+[Project Design Document](./DESIGN.md)
+
 ## Setup Instructions
 
 1. **Set Up Local Docker Registry**  
