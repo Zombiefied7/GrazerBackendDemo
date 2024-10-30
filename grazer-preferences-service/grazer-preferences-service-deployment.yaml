@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grazer-preferences-service
+  labels:
+    app: grazer-preferences-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grazer-preferences-service
+  template:
+    metadata:
+      labels:
+        app: grazer-preferences-service
+    spec:
+      containers:
+      - name: grazer-preferences-service
+        image: localhost:5000/grazer-preferences-service:latest
+        ports:
+        - containerPort: 8081
+        env:
+        - name: DB_HOST
+          value: "grazer-database"
+        - name: DB_USER
+          value: "user"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "grazer"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grazer-preferences-service
+  labels:
+    app: grazer-preferences-service
+spec:
+  selector:
+    app: grazer-preferences-service
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30081 # Exposing on port 30081 for external access
+  type: NodePort

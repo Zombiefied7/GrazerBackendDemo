@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grazer-user-service
+  labels:
+    app: grazer-user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grazer-user-service
+  template:
+    metadata:
+      labels:
+        app: grazer-user-service
+    spec:
+      containers:
+      - name: grazer-user-service
+        image: localhost:5000/grazer-user-service:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: "grazer-database"
+        - name: DB_USER
+          value: "user"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "grazer"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grazer-user-service
+  labels:
+    app: grazer-user-service
+spec:
+  selector:
+    app: grazer-user-service
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30080 # Exposing on port 30080 for external access
+  type: NodePort

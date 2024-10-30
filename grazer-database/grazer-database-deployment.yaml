@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grazer-database
+  labels:
+    app: grazer-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grazer-database
+  template:
+    metadata:
+      labels:
+        app: grazer-database
+    spec:
+      containers:
+      - name: grazer-database
+        image: mariadb:10.5
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "rootpassword"
+        - name: MYSQL_DATABASE
+          value: "grazer"
+        - name: MYSQL_USER
+          value: "user"
+        - name: MYSQL_PASSWORD
+          value: "password"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grazer-database
+  labels:
+    app: grazer-database
+spec:
+  selector:
+    app: grazer-database
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

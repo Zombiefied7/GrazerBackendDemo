@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "5757cc1c-0a74-4ab9-afa5-a1e4b2ed35fb",
+		"name": "Grazer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10519149"
+	},
+	"item": [
+		{
+			"name": "user-service",
+			"item": [
+				{
+					"name": "{{endpoint-user-service}}/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"person a\",\r\n  \"gender\": \"male\",\r\n  \"location\": \"0,0\",\r\n  \"diet_type\": \"vegan\",\r\n  \"age\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-user-service}}/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-user-service}}users/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"person a updated\",\r\n  \"gender\": \"male\",\r\n  \"location\": \"1,1\",\r\n  \"diettype\": \"vegan\",\r\n  \"age\": 26\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-user-service}}/users/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "preferences-service",
+			"item": [
+				{
+					"name": "{{endpoint-preferences}}/preferences",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userID\": 3,\r\n  \"genders\": [\"female\", \"enby\"],\r\n  \"minAge\": 20,\r\n  \"maxAge\": 30,\r\n  \"dietTypes\": [\"vegan\", \"vegetarian\"],\r\n  \"distance\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint-preferences}}/preferences",
+							"host": [
+								"{{endpoint-preferences}}"
+							],
+							"path": [
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-preferences}}/preferences",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:30081/preferences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30081",
+							"path": [
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-preferences}}/preferences/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userID\": 1,\r\n  \"genders\": [\"enby\"],\r\n  \"minAge\": 22,\r\n  \"maxAge\": 35,\r\n  \"dietTypes\": [\"vegan\"],\r\n  \"distance\": 15\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30081/preferences/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30081",
+							"path": [
+								"preferences",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-preferences}}/preferences/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:30081/preferences/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30081",
+							"path": [
+								"preferences",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "liking-service",
+			"item": [
+				{
+					"name": "{{endpoint-liking}}/likes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userID\": 1,\r\n  \"likedUserID\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint-liking}}/likes",
+							"host": [
+								"{{endpoint-liking}}"
+							],
+							"path": [
+								"likes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-liking}}/likes/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userID\": 1,\r\n  \"likedUserID\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint-liking}}/likes/1",
+							"host": [
+								"{{endpoint-liking}}"
+							],
+							"path": [
+								"likes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-liking}}/likes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userID\": 1,\r\n  \"likedUserID\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint-liking}}/likes/1",
+							"host": [
+								"{{endpoint-liking}}"
+							],
+							"path": [
+								"likes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "matching-service",
+			"item": [
+				{
+					"name": "{{endpoint-matching}}/matches",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userID\": 1,\r\n  \"likedUserID\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint-matching}}/matches",
+							"host": [
+								"{{endpoint-matching}}"
+							],
+							"path": [
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-matching}}/matches/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint-matching}}/matches/1",
+							"host": [
+								"{{endpoint-matching}}"
+							],
+							"path": [
+								"matches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{endpoint-matching}}/matches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint-matching}}/matches",
+							"host": [
+								"{{endpoint-matching}}"
+							],
+							"path": [
+								"matches"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "http://localhost:30080",
+			"type": "default"
+		},
+		{
+			"key": "endpoint-user-service",
+			"value": "http://localhost:30080",
+			"type": "default"
+		},
+		{
+			"key": "endpoint-preferences",
+			"value": "http://localhost:30081",
+			"type": "default"
+		},
+		{
+			"key": "endpoint-liking",
+			"value": "http://localhost:30082",
+			"type": "default"
+		},
+		{
+			"key": "endpoint-matching",
+			"value": "http://localhost:30083",
+			"type": "default"
+		}
+	]
+}

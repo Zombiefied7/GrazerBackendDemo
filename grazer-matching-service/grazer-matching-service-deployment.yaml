@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grazer-matching-service
+  labels:
+    app: grazer-matching-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grazer-matching-service
+  template:
+    metadata:
+      labels:
+        app: grazer-matching-service
+    spec:
+      containers:
+      - name: grazer-matching-service
+        image: localhost:5000/grazer-matching-service:latest
+        ports:
+        - containerPort: 8083
+        env:
+        - name: DB_HOST
+          value: "grazer-database"
+        - name: DB_USER
+          value: "user"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "grazer"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grazer-matching-service
+  labels:
+    app: grazer-matching-service
+spec:
+  selector:
+    app: grazer-matching-service
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+      nodePort: 30083 # Exposing on port 30083 for external access
+  type: NodePort

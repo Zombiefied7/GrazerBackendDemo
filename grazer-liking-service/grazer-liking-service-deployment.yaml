@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grazer-liking-service
+  labels:
+    app: grazer-liking-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grazer-liking-service
+  template:
+    metadata:
+      labels:
+        app: grazer-liking-service
+    spec:
+      containers:
+      - name: grazer-liking-service
+        image: localhost:5000/grazer-liking-service:latest
+        ports:
+        - containerPort: 8082
+        env:
+        - name: DB_HOST
+          value: "grazer-database"
+        - name: DB_USER
+          value: "user"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "grazer"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grazer-liking-service
+  labels:
+    app: grazer-liking-service
+spec:
+  selector:
+    app: grazer-liking-service
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+      nodePort: 30082 # Exposing on port 30082 for external access
+  type: NodePort
